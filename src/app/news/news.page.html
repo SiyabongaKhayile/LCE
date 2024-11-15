@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+    <div class="loader-overlay" id="loader-overlay" style="display:none;">
+      <div id="loader" class="loader"></div>
+    </div>
+  
+    <div class="mainPageSection">
+      <div class="container">
+        <h1 class="header">News Updates</h1>
+        <div class="row mt-5 w-100 infoRow" id="infoRow">
+          <!-- News articles will be dynamically populated here -->
+        </div>
+      </div>
+    </div>
+  
+    <div class="sos-button" (click)="activateSOS()">
+      <ion-icon name="warning-outline"></ion-icon>
+      <span>SOS</span>
+    </div>
+  </ion-content>
