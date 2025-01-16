@@ -1,150 +1,145 @@
+/* Header Toolbar */
+.header-toolbar {
+  background-color: #006281;
+}
+
 /* Main container styling */
 .register-content {
-    --background: #FFF5E6;
-  }
-  
+  --background: #E6F7FF;
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 98, 129, 0.2);
+}
+
+/* Title styling */
+.title {
+  color: #812B29;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.title ion-icon {
+  font-size: 2rem;
+  color: #732725;
+}
+
+/* Subtitle styling */
+.ion-card-subtitle {
+  color: #732725;
+  font-size: 0.9rem;
+}
+
+/* Form styling */
+.custom-input {
+  --background: transparent;
+  --border-color: #006281;
+  --border-radius: 8px;
+  --border-width: 1px;
+  --border-style: solid;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  margin-bottom: 1rem;
+}
+
+.custom-input.item-has-focus {
+  --border-color: #732725;
+  --border-width: 2px;
+}
+
+ion-label {
+  color: #812B29 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+}
+
+ion-input {
+  --color: #812B29;
+  --placeholder-color: #732725;
+  font-size: 1rem;
+}
+
+/* Button styling */
+.sign-btn {
+  --background: #006281;
+  --background-hover: #812B29;
+  --background-activated: #732725;
+  --border-radius: 25px;
+  --color: #FFFFFF;
+  height: 48px;
+  margin-top: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Divider styling */
+.divider-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: #006281;
+}
+
+.divider-text {
+  color: #812B29;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Login link section */
+.login-text {
+  color: #732725;
+  font-size: 0.9rem;
+}
+
+.login-link {
+  color: #006281;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.login-link:hover {
+  color: #812B29;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.register-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
   .register-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
+      margin: 1rem;
+      padding: 1.5rem;
   }
   
-  /* Title styling */
   .title {
-    color: #4A3500;
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .title-icon {
-    font-size: 2.2rem;
-    color: #FF9800;
-  }
-  
-  /* Form container styling */
-  .form-container {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 4px 6px rgba(238, 204, 140, 0.1);
-  }
-  
-  /* Input items styling */
-  .input-item {
-    --background: #FFF5E6;
-    --border-color: #EECC8C;
-    --border-radius: 8px;
-    --border-width: 1px;
-    --padding-start: 12px;
-    --padding-end: 12px;
-    margin: 16px 0;
-  }
-  
-  .input-item.item-has-focus {
-    --background: #FFFFFF;
-    --border-color: #FF9800;
-    --border-width: 2px;
-  }
-  
-  /* Input labels */
-  .input-item ion-label {
-    color: #8D6E63;
-    font-weight: 500;
-    font-size: 0.9rem;
-  }
-  
-  /* Input icons */
-  .input-item ion-icon[slot="start"] {
-    color: #FF9800;
-    margin-right: 8px;
-  }
-  
-  /* Sign up button */
-  .sign-btn {
-    --background: #FF9800;
-    --background-hover: #F57C00;
-    --color: #FFFFFF;
-    --border-radius: 25px;
-    --box-shadow: 0 4px 8px rgba(255, 152, 0, 0.2);
-    margin-top: 24px;
-    height: 48px;
-    font-weight: 600;
-  }
-  
-  /* Divider styling */
-  .divider-container {
-    display: flex;
-    align-items: center;
-    margin: 32px 0;
-    gap: 16px;
-  }
-  
-  .divider-line {
-    flex: 1;
-    height: 1px;
-    background: #EECC8C;
-  }
-  
-  .divider-text {
-    color: #8D6E63;
-    font-size: 0.9rem;
-    margin: 0;
-    white-space: nowrap;
-  }
-  
-  /* Login link section */
-  .login-link-container {
-    text-align: center;
-    color: #5D4037;
-    font-size: 0.9rem;
-  }
-  
-  .login-link {
-    color: #FF9800;
-    text-decoration: none;
-    font-weight: 600;
-    margin-left: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .login-link:hover {
-    color: #F57C00;
-  }
-  
-  /* Animations */
-  .input-item, .sign-btn {
-    transition: all 0.3s ease;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    .register-container {
-      padding: 10px;
-    }
-  
-    .title {
       font-size: 1.5rem;
-    }
-  
-    .form-container {
-      padding: 16px;
-    }
   }
-  
-  /* Focus states */
-  .input-item:focus-within {
-    transform: translateY(-2px);
-  }
-  
-  .sign-btn:active {
-    transform: scale(0.98);
-  }
-  
+}

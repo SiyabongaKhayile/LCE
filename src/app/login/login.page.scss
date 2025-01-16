@@ -1,11 +1,11 @@
 /* Header Toolbar */
 .header-toolbar {
-    background-color: #3880ff; /* Match the color of the navbar */
+    background-color: #006281; /* Updated color */
 }
 
 /* Main container styling */
 ion-content {
-    --background: #FFF5E6;
+    --background: #E6F7FF; /* Adjusted for a lighter shade complementing #006281 */
 }
 
 .login-container {
@@ -14,12 +14,12 @@ ion-content {
     padding: 2rem;
     background: #FFFFFF;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(238, 204, 140, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 98, 129, 0.2); /* Updated shadow color */
 }
 
 /* Title styling */
 .title {
-    color: #4A3500;
+    color: #812B29; /* Updated color */
     font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
@@ -32,19 +32,19 @@ ion-content {
 
 .title ion-icon {
     font-size: 2rem;
-    color: #FF9800;
+    color: #732725; /* Updated icon color */
 }
 
 /* Subtitle styling */
 .ion-card-subtitle {
-    color: #666; /* Subtitle color */
+    color: #732725; /* Updated subtitle color */
     font-size: 0.9rem;
 }
 
 /* Form styling */
 .custom-input {
     --background: transparent;
-    --border-color: #EECC8C;
+    --border-color: #006281; /* Updated border color */
     --border-radius: 8px;
     --border-width: 1px;
     --border-style: solid;
@@ -54,27 +54,27 @@ ion-content {
 }
 
 .custom-input.item-has-focus {
-    --border-color: #FF9800;
+    --border-color: #732725; /* Updated focus border color */
     --border-width: 2px;
 }
 
 ion-label {
-    color: #8D6E63 !important;
+    color: #812B29 !important; /* Updated label color */
     font-size: 0.9rem !important;
     font-weight: 600 !important;
 }
 
 ion-input {
-    --color: #4A3500;
-    --placeholder-color: #8D6E63;
+    --color: #812B29; /* Updated input text color */
+    --placeholder-color: #732725; /* Updated placeholder color */
     font-size: 1rem;
 }
 
 /* Button styling */
 .sign-btn {
-    --background: #d4af37;
-    --background-hover: #ffcc00;
-    --background-activated: #ffcc00;
+    --background: #006281; /* Updated background color */
+    --background-hover: #812B29; /* Updated hover background color */
+    --background-activated: #732725; /* Updated activated background color */
     --border-radius: 25px;
     --color: #FFFFFF;
     height: 48px;
@@ -95,11 +95,11 @@ ion-input {
 .divider-line {
     flex: 1;
     height: 1px;
-    background: #EECC8C;
+    background: #006281; /* Updated divider line color */
 }
 
 .divider-text {
-    color: #8D6E63;
+    color: #812B29; /* Updated divider text color */
     font-size: 0.9rem;
     font-weight: 600;
     white-space: nowrap;
@@ -107,19 +107,19 @@ ion-input {
 
 /* Sign up section */
 .signup-text {
-    color: #5D4037;
+    color: #732725; /* Updated sign-up text color */
     font-size: 0.9rem;
 }
 
 .signup-link {
-    color: #3880ff;
+    color: #006281; /* Updated link color */
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
 }
 
 .signup-link:hover {
-    color: #228B22;
+    color: #812B29; /* Updated hover link color */
 }
 
 /* Animations */
