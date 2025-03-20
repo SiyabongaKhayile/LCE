@@ -1,20 +1,146 @@
+<!-- Header -->
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="showSection('home')" [ngClass]="{'menu-button-active': currentSection === 'home'}">Home</ion-button>
+      <ion-button (click)="showSection('about')" [ngClass]="{'menu-button-active': currentSection === 'about'}">About Us</ion-button>
+      <ion-button (click)="showSection('programs')" [ngClass]="{'menu-button-active': currentSection === 'programs'}">Programs</ion-button>
+      <ion-button (click)="showSection('contact')" [ngClass]="{'menu-button-active': currentSection === 'contact'}">Contact</ion-button>
+    </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" [style.backgroundImage]="'url(' + backgroundImages[currentBackgroundIndex] + ')'">
+  <!-- Main background is handled via CSS and TypeScript -->
+  
+  <!-- Logo/Header section -->
+  <div class="logo-container ion-text-center">
+    <h1>INkosinathi School of Discovery</h1>
   </div>
+  
+  <!-- Home Section -->
+  <div *ngIf="currentSection === 'home'" class="ion-padding ion-text-center">
+    <h2>Welcome to INkosinathi School of Discovery</h2>
+  </div>
+
+  <div class="footer-text">
+    <p>Welcome to our school where we focus on nurturing </p>
+    <p>young minds through various support</p> 
+    <p>initiatives and community programs.</p>
+    <br>
+    © 2025 INkosinathi School of Discovery. All rights reserved.
+  </div>
+  
+  <!-- About Us Section -->
+  <ion-grid *ngIf="currentSection === 'about'">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>About INkosinathi School of Discovery</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Our mission is to provide quality education and support to students through specialized programs designed to develop leadership skills and personal growth.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <!-- Programs Section -->
+  <ion-grid *ngIf="currentSection === 'programs'">
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program1.jpg" alt="Behavioural Change Support">
+          <ion-card-header>
+            <ion-card-title>Behavioural Change Support</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Our behavioral change support program helps students develop positive habits and overcome challenges.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program2.jpg" alt="School Prefect Support">
+          <ion-card-header>
+            <ion-card-title>School Prefect Support</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>We provide specialized training and mentorship for student leaders to develop their leadership abilities.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program3.jpg" alt="Boys to Men Support">
+          <ion-card-header>
+            <ion-card-title>Boys to Men Support</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Our mentorship program focuses on guiding young men through positive role modeling and life skills development.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program4.jpg" alt="Vezikhono Support Initiative">
+          <ion-card-header>
+            <ion-card-title>Vezikhono Support Initiative</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>The Vezikhono initiative focuses on skills development and enhancing students' natural talents.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program5.jpg" alt="Community Participation">
+          <ion-card-header>
+            <ion-card-title>Community Participation</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>We encourage students to engage with and contribute to their communities through various projects and initiatives.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card class="image-card">
+          <img src="assets/images/program6.jpg" alt="Lisekhona Ithemba Initiative">
+          <ion-card-header>
+            <ion-card-title>Lisekhona Ithemba Initiative</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>The Lisekhona Ithemba Initiative provides hope and support to students facing various life challenges.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <!-- Contact Section -->
+  <ion-grid *ngIf="currentSection === 'contact'">
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Contact Us</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Phone:</strong> 073 207 7766 | 076 687 7024</p>
+            <p><strong>Email:</strong> inkosinathi.schoolofdiscovery&#64;gmail.com</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

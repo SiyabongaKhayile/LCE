@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+
+interface UserData {
+  username: string;
+  name: string;
+  idNumber: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private usersCollection: AngularFirestoreCollection<UserData>;
+
   constructor(
     private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router
-  ) {}
+  ) {
+    this.usersCollection = this.firestore.collection<UserData>('users');
+  }
 
   async login(email: string, password: string) {
     try {
       const userCredential = await this.auth.signInWithEmailAndPassword(email, password);
       if (userCredential.user) {
-        localStorage.setItem('userID', userCredential.user.uid);
+        localStorage.setItem('userEmail', userCredential.user.email || '');
         return { success: true, message: 'Login successful' };
       } else {
         return { success: false, message: 'No user found with the provided credentials' };
@@ -28,24 +41,43 @@ export class AuthService {
     }
   }
 
-  async register(userData: any) {
+  async register(userData: UserData & { password: string; confirmPassword: string }) {
     console.log('Registering user with email:', userData.email);
+    
+    // First validate the ID number
+    if (!this.validateIDNumber(userData.idNumber)) {
+      return { success: false, message: 'Invalid ID number format' };
+    }
+
     try {
+      // Check if email already exists in users collection
+      const emailQuery = await this.usersCollection.ref
+        .where('email', '==', userData.email)
+        .get();
+
+      if (!emailQuery.empty) {
+        return { success: false, message: 'This email is already registered' };
+      }
+
+      // Create authentication user
       const userCredential = await this.auth.createUserWithEmailAndPassword(
         userData.email,
         userData.password
       );
+
       if (userCredential.user) {
-        await this.firestore
-          .collection('users')
-          .doc(userCredential.user.uid)
-          .set({
-            name: userData.name,
-            email: userData.email,
-            phone: userData.phone,
-            address: userData.address,
-            userID: userCredential.user.uid,
-          });
+        // Store user data using email as document ID
+        const userDataToStore: UserData = {
+          username: userData.username,
+          name: userData.name,
+          idNumber: userData.idNumber,
+          email: userData.email,
+          phone: userData.phone,
+          address: userData.address
+        };
+
+        await this.usersCollection.doc(userData.email).set(userDataToStore);
+
         return { success: true, message: 'Registration successful' };
       } else {
         return { success: false, message: 'Failed to create user' };
@@ -54,6 +86,14 @@ export class AuthService {
       console.error('Registration error:', error);
       return { success: false, message: this.getErrorMessage(error) };
     }
+  }
+
+  private validateIDNumber(idNumber: string): boolean {
+    if (!idNumber) return false;
+    
+    // Check if ID Number is exactly 13 digits and contains only numbers
+    const idRegex = /^\d{13}$/;
+    return idRegex.test(idNumber.toString());
   }
 
   async resetPassword(email: string) {
@@ -66,52 +106,17 @@ export class AuthService {
     }
   }
 
-  async getUserData(userID: string) {
+  async getUserData(email: string): Promise<{ success: boolean; data?: UserData; message?: string }> {
     try {
-      const doc = await this.firestore.collection('users').doc(userID).get().toPromise();
+      const doc = await this.usersCollection.doc(email).get().toPromise();
       if (doc && doc.exists) {
-        return { success: true, data: doc.data() };
+        return { success: true, data: doc.data() as UserData };
       } else {
         return { success: false, message: 'User data not found' };
       }
     } catch (error) {
       console.error('Get user data error:', error);
       return { success: false, message: 'Failed to fetch user data' };
-    }
-  }
-
-  async updateUserDetails(userID: string, updatedData: any) {
-    try {
-      await this.firestore.collection('users').doc(userID).update(updatedData);
-      return { success: true, message: 'User details updated' };
-    } catch (error) {
-      console.error('Update user details error:', error);
-      return { success: false, message: 'Update failed' };
-    }
-  }
-
-  async getPostByID(postID: string) {
-    try {
-      const doc = await this.firestore.collection('news').doc(postID).get().toPromise();
-      if (doc && doc.exists) {
-        return doc.data();
-      } else {
-        return { error: 'Post not found' };
-      }
-    } catch (error) {
-      console.error('Get post error:', error);
-      return { error: 'Database error' };
-    }
-  }
-
-  async addPost(postData: any) {
-    try {
-      const postRef = this.firestore.collection('news').doc();
-      await postRef.set(postData);
-      return { success: true, message: 'Post added successfully' };
-    } catch (error) {
-      console.error('Add post error:', error);
-      return { success: false, message: 'Failed to add post' };
     }
   }
 
